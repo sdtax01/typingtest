@@ -1,5 +1,9 @@
 import { lazy, Suspense } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom';
+
+declare const __STANDALONE__: boolean;
+// A double-clickable file (file://) has no server to rewrite URLs, so it uses #/ routes.
+const Router = __STANDALONE__ ? HashRouter : BrowserRouter;
 import Layout from './components/Layout';
 import { Spinner } from './components/Metric';
 import { AuthProvider } from './lib/auth';
@@ -16,7 +20,7 @@ const Admin = lazy(() => import('./pages/Admin'));
 export default function App() {
   return (
     <AuthProvider>
-      <BrowserRouter>
+      <Router>
         <Routes>
           <Route element={<Layout />}>
             <Route index element={<Home />} />
@@ -30,7 +34,7 @@ export default function App() {
             <Route path="*" element={<div className="p-10 text-center">पान सापडले नाही · Page not found</div>} />
           </Route>
         </Routes>
-      </BrowserRouter>
+      </Router>
     </AuthProvider>
   );
 }
