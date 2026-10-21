@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: light; }
+html, body, #root { min-height: 100%; }
+body { @apply bg-ink-50 text-ink-900 font-sans antialiased; }
+:lang(mr), .font-deva { font-family: 'Noto Sans Devanagari', 'Mangal', 'Nirmala UI', sans-serif; }
+
+:focus-visible { outline: 3px solid #2f6bff; outline-offset: 2px; border-radius: 6px; }
+
+@layer components {
+  .card { @apply bg-white rounded-2xl shadow-card border border-ink-100; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed; }
+  .btn-primary { @apply btn bg-brand-600 text-white hover:bg-brand-700; }
+  .btn-accent { @apply btn bg-saffron-500 text-white hover:bg-saffron-600; }
+  .btn-ghost { @apply btn bg-white text-ink-700 border border-ink-100 hover:bg-ink-50; }
+  .btn-danger { @apply btn bg-bad-600 text-white hover:bg-red-800; }
+  .input { @apply w-full rounded-xl border border-ink-300 bg-white px-3 py-2 text-sm; }
+  .label { @apply block text-xs font-semibold uppercase tracking-wide text-ink-500 mb-1; }
+}
+
+.ref-text { line-height: 2.25; letter-spacing: 0.01em; word-break: normal; overflow-wrap: anywhere; white-space: pre-wrap; }
+.el-correct { color: #14804a; }
+.el-wrong { color: #c62828; background: #fdecec; border-radius: 3px; }
+.el-missing { color: #c62828; text-decoration: underline wavy #c62828; }
+.el-current { background: #dbe7ff; box-shadow: inset 0 -3px 0 #2f6bff; border-radius: 3px; }
+.el-pending { color: #5b6b84; }
+.diff-sub { background:#fdecec; border-radius:4px; padding:0 2px; }
+.diff-sub s { color:#7a7a7a; font-size:.75em; margin-right:2px; }
+.diff-sub b { color:#c62828; font-weight:600; }
+.diff-missing { border:1px dashed #c62828; color:#c62828; border-radius:4px; padding:0 2px; }
+.diff-extra { background:#fff6e8; color:#c96f00; text-decoration: underline; border-radius:4px; padding:0 2px; }
+
+@media print {
+  .no-print { display: none !important; }
+  body { background: white; }
+  .card { box-shadow: none; border-color: #ccc; }
+  main { padding: 0 !important; }
+}
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
